@@ -1,0 +1,6 @@
+__pycache__
+chrome_data
+output/*
+twitterspider/output/*
+weibospider/output/*
+.vscode
