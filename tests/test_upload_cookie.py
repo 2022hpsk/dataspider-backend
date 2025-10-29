@@ -62,11 +62,10 @@ def test_upload_cookie_weibo():
     print("\n=== 测试上传 weibo cookie.txt ===")
     url = "http://localhost:8000/api/v1/upload_cookie"
 
-    cookie_content = "SUB=abcd; SSOLoginState=1234567890"
-    files = {
-        "cookie_file": ("cookie.txt", cookie_content.encode("utf-8"), "text/plain"),
-    }
-    fields = {"platform": "weibo"}
+    cookie_content = "hahahah"
+    # 新接口接收 cookie 字符串作为表单字段 'cookie'
+    files = {}
+    fields = {"platform": "weibo", "cookie": cookie_content}
 
     status, response = make_multipart_request(url, fields, files)
     print(f"状态码: {status}")
@@ -101,10 +100,8 @@ def test_upload_cookie_unsupported_platform():
     url = "http://localhost:8000/api/v1/upload_cookie"
 
     cookie_content = "k=v"
-    files = {
-        "cookie_file": ("cookie.txt", cookie_content.encode("utf-8"), "text/plain"),
-    }
-    fields = {"platform": "unknown"}
+    files = {}
+    fields = {"platform": "unknown", "cookie": cookie_content}
 
     status, response = make_multipart_request(url, fields, files)
     print(f"状态码: {status}")
@@ -116,10 +113,8 @@ def test_upload_cookie_missing_platform():
     url = "http://localhost:8000/api/v1/upload_cookie"
 
     cookie_content = "k=v"
-    files = {
-        "cookie_file": ("cookie.txt", cookie_content.encode("utf-8"), "text/plain"),
-    }
-    fields = {}  # 缺少 platform
+    files = {}
+    fields = {"cookie": cookie_content}  # 缺少 platform
 
     status, response = make_multipart_request(url, fields, files)
     print(f"状态码: {status}")
@@ -130,8 +125,9 @@ def test_upload_cookie_missing_file():
     print("\n=== 测试上传 缺少 cookie_file ===")
     url = "http://localhost:8000/api/v1/upload_cookie"
 
-    files = {}  # 缺少 cookie_file
-    fields = {"platform": "weibo"}
+    # 对应新接口，此用例表示缺少 cookie 字段
+    files = {}
+    fields = {"platform": "weibo"}  # 缺少 cookie
 
     status, response = make_multipart_request(url, fields, files)
     print(f"状态码: {status}")

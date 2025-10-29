@@ -1,4 +1,4 @@
-from fastapi import APIRouter, BackgroundTasks, HTTPException, Form, UploadFile, File
+from fastapi import APIRouter, BackgroundTasks, HTTPException, Form
 from app.models.schemas import ScrapeRequest, ScrapeResponse
 from app.services import tasks
 from app.services.task_manager import task_manager
@@ -88,9 +88,9 @@ async def list_tasks():
 
 
 @router.post("/upload_cookie")
-async def upload_cookie(platform: str = Form(...), cookie_file: UploadFile = File(...)):
-    """上传 cookie.txt 并根据 platform 覆盖本地 cookie 文件"""
-    logger.info("Received cookie upload for platform: %s filename: %s", platform, cookie_file.filename)
+async def upload_cookie(platform: str = Form(...), cookie: str = Form(...)):
+    """上传 cookie 字符串并根据 platform 覆盖本地 cookie 文件"""
+    logger.info("Received cookie upload for platform: %s cookie_size: %d", platform, len(cookie) if cookie is not None else 0)
     platform_key = platform.lower()
 
     # 映射 platform 到本地 cookie 文件路径 —— 根据需要调整路径
@@ -106,7 +106,8 @@ async def upload_cookie(platform: str = Form(...), cookie_file: UploadFile = Fil
     target_path = target_paths[platform_key]
 
     try:
-        content = await cookie_file.read()
+        # cookie is a string from the form. Encode to bytes for writing.
+        content = cookie.encode("utf-8")
         # 备份旧文件（可选）
         # if target_path.exists():
         #     backup_path = target_path.with_suffix(".cookie.bak")
