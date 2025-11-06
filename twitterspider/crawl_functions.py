@@ -323,17 +323,18 @@ def get_posts_byday(driver,keyword, start_date, end_date, output_dir=None,is_liv
             time.sleep(30)
 
         if attempts > max_attempts:  # 如果连续6次没有新数据，停止爬取
-            print(f"多次滚动后没有新数据，已尝试 {attempts}")
+            print(f"多次滚动后没有新数据，已尝试 {attempts}次，停止爬取。")
+            break
             # break
-            user_input = input("请输入0停止爬取，1继续爬取: ")  # 获取用户输入
-            if user_input == "0":
-                print("停止爬取。")
-                break  # 停止爬取
-            elif user_input == "1":
-                print("继续爬取...")
-                attempts = 0  # 重置尝试次数，继续爬取
-            else:
-                print("无效输入，请输入0或1。")
+            # user_input = input("请输入0停止爬取，1继续爬取: ")  # 获取用户输入
+            # if user_input == "0":
+            #     print("停止爬取。")
+            #     break  # 停止爬取
+            # elif user_input == "1":
+            #     print("继续爬取...")
+            #     attempts = 0  # 重置尝试次数，继续爬取
+            # else:
+            #     print("无效输入，请输入0或1。")
 
         driver.execute_script(f"window.scrollBy(0, {scroll_step});")
         scroll_count += 1

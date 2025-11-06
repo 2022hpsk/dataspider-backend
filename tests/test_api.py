@@ -37,7 +37,7 @@ def test_start_keyword_task():
         "start_date": "2025-06-01",
         "end_date": "2025-06-02",
         "max_pages": 1,
-        # "output_dir": "C:/Users/lenovo/Desktop/out"
+        "output_dir": "C:/Users/lenovo/Desktop/out",
     }
 
     status, response = make_request(url, "POST", payload)
@@ -62,7 +62,7 @@ def test_start_user_task():
     url = "http://localhost:8000/api/v1/scrape"
     payload = {
         "mode": "user",
-        "platform": "weibo",
+        "platform": "twitter",
         "user_id": "7284785243",
         "start_date": "2024-06-01",
         "end_date": "2025-10-17",
@@ -89,7 +89,7 @@ def test_start_tweet_task():
     """测试启动单条推文爬虫任务"""
     print("\n=== 测试启动单条推文爬虫任务 ===")
     url = "http://localhost:8000/api/v1/scrape"
-    payload = {"mode": "tweet", "platform": "weibo", "tweet_id": "abcdef123456"}
+    payload = {"mode": "tweet", "platform": "twitter", "tweet_id": "abcdef123456"}
 
     status, response = make_request(url, "POST", payload)
     print(f"状态码: {status}")

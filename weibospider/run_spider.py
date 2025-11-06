@@ -66,6 +66,9 @@ if __name__ == '__main__':
                 'overwrite': True
             }
         })
+        # 将输出目录写入 output.txt 以供 pipelines 使用
+        with open('output.txt', 'w', encoding='utf-8') as f:
+            f.write(os.path.dirname(args.output))
 
     process = CrawlerProcess(settings)
 
