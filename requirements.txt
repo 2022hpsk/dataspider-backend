@@ -11,3 +11,7 @@ uvicorn
 python-multipart
 selenium
 bs4
+playwright
+aiofiles
+httpx
+opencv-python

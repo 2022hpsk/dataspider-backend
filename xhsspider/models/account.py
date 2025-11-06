@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 from datetime import datetime
-from typing import Optional, Literal
+from typing import Optional, Literal,List
 
 from models import Platform
 
@@ -30,13 +30,13 @@ class Account(BaseModel):
     homepage: str = Field(..., description="主页url")
     avatar: Optional[str] = Field(None, description="头像url")
     intro: Optional[str] = Field(None, description="简介")
-    tags: list[str] = Field(default_factory=list, description="标签")
+    tags: List[str] = Field(default_factory=list, description="标签")
     gender: Optional[Literal["male", "female", "other"]] = Field(
         None, description="性别"
     )
     birthyear: Optional[int] = Field(None, description="生日年份")
     register_time: Optional[datetime] = Field(None, description="注册时间")
-    qualification: list[str] = Field(default_factory=list, description="官方认证信息")
+    qualification: List[str] = Field(default_factory=list, description="官方认证信息")
     statistics: Statistics = Field(
         default_factory=Statistics, description="统计发帖、粉丝、关注信息"
     )

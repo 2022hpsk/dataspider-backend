@@ -97,9 +97,11 @@ def rfc2822_to_timestamp(rfc2822_time):
 
 
 def parse_xhs_time(time_str: str) -> str:
+
     """
     解析小红书时间字符串为标准日期格式 YYYY-MM-DD
     """
+    print(f"Parsing XHS time string: {time_str}")
     now = datetime.now()
     time_str = time_str.strip()
 

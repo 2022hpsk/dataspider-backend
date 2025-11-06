@@ -1,7 +1,9 @@
 # 已完成修改20250717
 
+from typing import Union
 
-def safe_to_non_negative_int(value) -> int | None:
+
+def safe_to_non_negative_int(value) -> Union[int, None]:
     """
     安全地将值转换为非负整数：
     - 如果已经是非负整数，直接返回

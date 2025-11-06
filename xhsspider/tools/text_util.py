@@ -1,5 +1,5 @@
 import re
-
+from typing import List
 from models import Post, Platform
 
 # 已完成修改20250717
@@ -7,11 +7,11 @@ from models import Post, Platform
 _url_pattern = re.compile(r'https?://[^\s<>"]+', re.IGNORECASE)
 
 
-def extract_urls(text: str) -> list[str]:
+def extract_urls(text: str) -> List[str]:
     """
     Extract urls from text.
     :param text: The text to extract urls from.
-    :return: a list of urls.
+    :return: a List of urls.
     """
     if not isinstance(text, str):
         text = ""
@@ -34,12 +34,12 @@ _tag_pattern_map = {
 }
 
 
-def extract_tags(text: str, platform: Platform) -> list[str]:
+def extract_tags(text: str, platform: Platform) -> List[str]:
     """
     Extract tags from text.
     :param text: The text to extract tags from.
     :param platform: The platform of the text.
-    :return: a list of tags.
+    :return: a List of tags.
     """
     if not isinstance(text, str):
         text = ""
@@ -65,12 +65,12 @@ def extract_tags(text: str, platform: Platform) -> list[str]:
     return tags
 
 
-def extract_at_users(text, platform: Platform) -> list[str]:
+def extract_at_users(text, platform: Platform) -> List[str]:
     """
     Extract @users from text.
     :param text: The text to extract @users from.
     :param platform: The platform of the text.
-    :return: A list of @users.
+    :return: A List of @users.
     """
     if not isinstance(text, str):
         text = ""

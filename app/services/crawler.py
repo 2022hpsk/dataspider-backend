@@ -84,6 +84,8 @@ def run_spider(
                 params.get("mode", "keyword"),
                 "--keyword",
                 params.get("keyword", ""),
+                "--output",
+                output_path,
             ]
     else:
         cmd = [sys.executable, "-m", "scrapy", "crawl", spider, "-o", output_path]

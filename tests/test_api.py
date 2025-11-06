@@ -227,15 +227,15 @@ def main():
         for task_id in task_ids:
             test_get_task_status(task_id)
 
-        # 5. 停止第一个任务
-        if len(task_ids) > 0:
-            test_stop_task(task_ids[0])
+        # # 5. 停止第一个任务
+        # if len(task_ids) > 0:
+        #     test_stop_task(task_ids[0])
 
-            # 等待停止生效
-            time.sleep(5)
+        #     # 等待停止生效
+        #     time.sleep(5)
 
-            # 再次查看状态
-            test_get_task_status(task_ids[0])
+        #     # 再次查看状态
+        #     test_get_task_status(task_ids[0])
 
     # 6. 再次查看所有任务
     # test_list_all_tasks()

@@ -1,6 +1,6 @@
 from datetime import datetime
 from enum import Enum
-from typing import Optional
+from typing import Optional, List
 from pydantic import BaseModel, Field
 
 from .platforms import Platform
@@ -21,11 +21,11 @@ class Post(BaseModel):
 
     class Content(BaseModel):
         raw_text: str = Field(..., description="原始文本")
-        at_users: list[str] = Field(default_factory=list, description="帖子中@的用户")
-        tags: list[str] = Field(default_factory=list, description="帖子中的#标签")
-        urls: list[str] = Field(default_factory=list, description="帖子中的链接")
-        images: list[str] = Field(default_factory=list, description="帖子中的图片")
-        videos: list[str] = Field(default_factory=list, description="帖子中的视频")
+        at_users: List[str] = Field(default_factory=list, description="帖子中@的用户")
+        tags: List[str] = Field(default_factory=list, description="帖子中的#标签")
+        urls: List[str] = Field(default_factory=list, description="帖子中的链接")
+        images: List[str] = Field(default_factory=list, description="帖子中的图片")
+        videos: List[str] = Field(default_factory=list, description="帖子中的视频")
 
     class Sender(BaseModel):
         class Location(BaseModel):

@@ -5,6 +5,7 @@ from typing import List, Optional, Dict, Any, Set
 from urllib.parse import urljoin
 
 import tools.text_util
+import tools.time_util
 import config
 from .login import RednoteLogin
 from .store import RednoteJsonlStoreImplement
@@ -368,7 +369,7 @@ class RednoteCrawler:
                 ),
                 sender=Post.Sender(
                     user_id=sender_data.get("user_id", ""),
-                    send_time=sender_data.get("send_time"),
+                    send_time=self.parse_time_string(sender_data.get("send_time","")),
                     location=Post.Sender.Location(
                         gps=sender_data.get("location", {}).get("gps"),
                         city=sender_data.get("location", {}).get("city"),
